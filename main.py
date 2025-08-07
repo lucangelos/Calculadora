@@ -1,6 +1,6 @@
 #colocando a biblioteca tkinter
 from tkinter import *
-from tkinter import Tk
+from tkinter import ttk
 
 #variável cor
 cor1= "#232933"
@@ -15,7 +15,10 @@ janela.title("Calculadora")
 janela.geometry("250x338")
 janela.config(bg=cor1)
 
-#frames da calculadora
+ttk.Separator(janela, orient=HORIZONTAL).grid(row=0, columnspan=1, ipadx=280)
+
+# Frames 
+ttk.Separator(janela, orient=HORIZONTAL).grid(row=0, columnspan=1, ipadx=280)
 frame_tela = Frame (janela, width=250, height=50, bg=cor1)
 frame_tela.grid(row=0, column=0)
 
@@ -25,12 +28,11 @@ frame_corpo.grid(row=1, column=0)
 todos_valores = ""
 valor_texto = StringVar()
 
-#criando funçõe
+#criando funções
 def recebe_valores(valor):
     global todos_valores
     todos_valores += str(valor)
     valor_texto.set(todos_valores)
-
 
 #função calcular
 def calcular():
@@ -42,7 +44,6 @@ def calcular():
     except:
         valor_texto.set("Erro")
         todos_valores = ""
-
 #funçaõ limpar tela
 def limpar_tela():
     global todos_valores
@@ -58,7 +59,7 @@ app_label.place(x=0, y=0)
 #criação de botões
 botao1 = Button(frame_corpo,command = limpar_tela, text="C", width=11, height=2, bg=cor3, font=("Ivy 13 bold"), relief=RAISED, overrelief=RIDGE)
 botao1.place(x=0, y=0)
-botao2 = Button(frame_corpo,command= lambda: recebe_valores("%") text="%", width=5, height=2, bg=cor3, font=("Ivy 13 bold"), relief=RAISED, overrelief=RIDGE)
+botao2 = Button(frame_corpo,command= lambda: recebe_valores("%"), text="%", width=5, height=2, bg=cor3, font=("Ivy 13 bold"), relief=RAISED, overrelief=RIDGE)
 botao2.place(x=100, y=0)
 botao3 = Button(frame_corpo, command= lambda: recebe_valores("/"), text="/", width=5, height=2, bg=cor5, fg=cor2, font=("Ivy 13 bold"), relief=RAISED, overrelief=RIDGE)
 botao3.place(x=177, y=0)
@@ -98,5 +99,4 @@ botao17.place(x=118, y=208)
 botao18 = Button(frame_corpo, command= calcular,text="=", width=5, height=2, bg=cor5, fg=cor2, font=("Ivy 13 bold"), relief=RAISED, overrelief=RIDGE)
 botao18.place(x=177, y=208)
 
-recebe_valores()
 janela.mainloop()
