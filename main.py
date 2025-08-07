@@ -27,17 +27,21 @@ valor_texto = StringVar()
 
 #criando funçõe
 def recebe_valores(valor):
-   
     global todos_valores
-    todos_valores = todos_valores + str(valor)
-    resultado = eval(todos_valores)
-    valor_texto.set(resultado)
+    todos_valores += str(valor)
+    valor_texto.set(todos_valores)
+
 
 #função calcular
 def calcular():
     global todos_valores
-    resultado = eval(todos_valores)
-    valor_texto.set(str(resultado))
+    try:
+        resultado = eval(todos_valores)
+        valor_texto.set(str(resultado))
+        todos_valores = str(resultado)  # para poder continuar calculando
+    except:
+        valor_texto.set("Erro")
+        todos_valores = ""
 
 #funçaõ limpar tela
 def limpar_tela():
